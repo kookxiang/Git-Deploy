@@ -43,9 +43,9 @@ func updateGitFolder(path string) {
 	fmt.Println("Pulling...")
 	runCommand(exec.Command("git", "pull"))
 
-	if _, err := os.Stat(path); os.IsExist(err) {
+	if _, err := os.Stat("deploy.sh"); err == nil {
 		fmt.Println("Runing external deploy.sh script...")
-		runCommand(exec.Command("deploy.sh"))
+		runCommand(exec.Command("./deploy.sh"))
 		return
 	}
 
