@@ -46,7 +46,6 @@ func updateGitFolder(path string) {
 	if _, err := os.Stat("deploy.sh"); err == nil {
 		fmt.Println("Runing external deploy.sh script...")
 		runCommand(exec.Command("./deploy.sh"))
-		return
 	}
 
 	fmt.Println("Done")
