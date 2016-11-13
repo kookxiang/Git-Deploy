@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/exec"
 	"strings"
+	"runtime"
 )
 
 func main() {
@@ -19,7 +20,11 @@ func requestHandler(w http.ResponseWriter, r *http.Request) {
 	if strings.Contains(path, "favicon.ico") {
 		return
 	}
-	go updateGitFolder(path)
+	if runtime.GOOS == "windows" {
+		go updateGitFolder(path[1:len(path)])
+	} else {
+		go updateGitFolder(path)
+	}
 	fmt.Fprint(w, "ok")
 }
 
