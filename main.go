@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"os"
 	"os/exec"
-	"strings"
 	"runtime"
+	"strings"
 )
 
 func main() {
@@ -51,6 +51,11 @@ func updateGitFolder(path string) {
 	if _, err := os.Stat("deploy.sh"); err == nil {
 		fmt.Println("Runing external deploy.sh script...")
 		runCommand(exec.Command("./deploy.sh"))
+	}
+
+	if _, err := os.Stat("build.sh"); err == nil {
+		fmt.Println("Runing external build.sh script...")
+		runCommand(exec.Command("./build.sh"))
 	}
 
 	fmt.Println("Done")
